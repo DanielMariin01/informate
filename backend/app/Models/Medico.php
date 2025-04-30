@@ -26,7 +26,10 @@ class Medico extends Model
         return $this->belongsTo(User::class, 'fk_usuario');
     }
     
-  
+    public function procedimientosSedes()
+    {
+        return $this->hasMany(Medico_procedimiento_sede::class, 'fk_medico');
+    }
     // Asegúrate de que los campos que pueden ser asignados masivamente estén protegidos o asignados
     protected $fillable = [
         'nombre',

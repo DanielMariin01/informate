@@ -7,12 +7,14 @@ use App\Filament\Resources\MedicoProcedimientoSedeResource\RelationManagers;
 use App\Models\Medico_procedimiento_sede;
 use App\Models\MedicoProcedimientoSede;
 use Filament\Forms;
+use Filament\Tables\Filters\TextFilter;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class MedicoProcedimientoSedeResource extends Resource
 {
@@ -22,14 +24,16 @@ class MedicoProcedimientoSedeResource extends Resource
 
     public static function form(Form $form): Form
     {
+        
         return $form
+
             ->schema([
                 Forms\Components\Select::make('fk_medico')  // Campo para seleccionar el médico
                 ->relationship('medico', 'nombre')
                 ->required(),
             Forms\Components\Select::make('fk_procedimiento')  // Campo para seleccionar el procedimiento
                 ->relationship('procedimiento', 'nombre')
-                ->required(),
+                ->required() ,
             Forms\Components\Select::make('fk_sede')  // Campo para seleccionar la sede
                 ->relationship('sede', 'nombre')
                 ->required(),
@@ -50,18 +54,22 @@ class MedicoProcedimientoSedeResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+     
             ->columns([
+                
                 Tables\Columns\TextColumn::make('medico.nombre')  // Columna para mostrar el nombre del médico
                     ->label('Médico')
                     ->searchable()
                     ->sortable(),
-                    Tables\Columns\TextColumn::make('procedimiento.codigo_radiologos')  // Columna para mostrar el código radiólogos del procedimiento
-                    ->label('Código Radiólogos')
+        
+                    Tables\Columns\TextColumn::make('procedimiento.codigo_resolucion')  // Columna para mostrar el código radiólogos del procedimiento
+                    ->label('Código resolución')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('procedimiento.nombre')  // Columna para mostrar el nombre del procedimiento
                     ->label('Procedimiento')
                     ->searchable()
+                    
                     ->sortable(),
                 Tables\Columns\TextColumn::make('sede.nombre')  // Columna para mostrar el nombre de la sede
                     ->label('Sede')
@@ -87,6 +95,8 @@ class MedicoProcedimientoSedeResource extends Resource
                     ->dateTime(),
                 
             ])
+            ->defaultPaginationPageOption(10)
+            ->paginationPageOptions([10, 25, 50, 100])
             ->filters([
                 Tables\Filters\SelectFilter::make('fk_medico')  // Filtro por médico
                 ->label('Médico')
@@ -103,9 +113,12 @@ class MedicoProcedimientoSedeResource extends Resource
                 ->searchable()
                 ->relationship('sede', 'nombre')
                 ->placeholder('Todas las sedes'),
-          //Tables\Filters\TextFilter::make('codigo')  // Filtro por código
-              //->label('Código')
-              //->placeholder('Buscar por código'),
+                Tables\Filters\SelectFilter::make('procedimiento.codigo_resolucion') // Filtro por código resolución
+                ->label('Código Resolución')
+                ->searchable()
+                ->placeholder('Buscar por código resolución')
+                ->relationship('procedimiento', 'codigo_resolucion'),
+            
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -115,6 +128,7 @@ class MedicoProcedimientoSedeResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+       
     }
 
     public static function getRelations(): array
@@ -132,4 +146,6 @@ class MedicoProcedimientoSedeResource extends Resource
             'edit' => Pages\EditMedicoProcedimientoSede::route('/{record}/edit'),
         ];
     }
+ 
+    
 }

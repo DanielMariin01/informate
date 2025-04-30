@@ -195,6 +195,8 @@ class ProcedimientoResource extends Resource
                     ->dateTime(),
              
             ])
+            ->defaultPaginationPageOption(20)
+            ->paginationPageOptions([10, 50, 100, 200])
             ->filters([
                 Tables\Filters\SelectFilter::make('fk_especialidad')
                 ->label('Especialidad')

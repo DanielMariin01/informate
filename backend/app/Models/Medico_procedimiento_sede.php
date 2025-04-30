@@ -14,7 +14,11 @@ class Medico_procedimiento_sede extends Model
     protected $fillable = [
         'fk_medico', // Relación con el médico
         'fk_procedimiento', // Relación con el procedimiento
-        'fk_sede', // Relación con la sede // Relación con la especialidad
+        'fk_sede', 
+        'cupos_diarios', // Cupos diarios
+        'duracion', // Duración
+        'observaciones', // Observaciones
+        // Relación con la sede // Relación con la especialidad
          // Relación con la empresa
     ];
     public function medico()
