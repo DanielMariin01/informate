@@ -17,7 +17,9 @@ class DepartamentoResource extends Resource
 {
     protected static ?string $model = Departamento::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
+    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Departamento';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

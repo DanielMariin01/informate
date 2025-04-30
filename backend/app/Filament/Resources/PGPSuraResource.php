@@ -69,6 +69,14 @@ class PGPSuraResource extends Resource
                     ->label('Observación')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
+                    ->dateTime()
+                    ->sortable(),
              
             ])
             ->filters([

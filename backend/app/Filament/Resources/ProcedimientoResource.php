@@ -17,7 +17,9 @@ class ProcedimientoResource extends Resource
 {
     protected static ?string $model = Procedimiento::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-beaker';
+    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Procedimiento';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

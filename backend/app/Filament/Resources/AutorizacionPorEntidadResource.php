@@ -18,8 +18,10 @@ use function Laravel\Prompts\search;
 class AutorizacionPorEntidadResource extends Resource
 {
     protected static ?string $model = Autorizacion_por_entidad::class;
+ 
+    protected static ?string $navigationLabel = 'Autorización por Entidad';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     public static function form(Form $form): Form
     {

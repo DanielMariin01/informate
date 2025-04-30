@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\EmpresaResource\Pages;
-use App\Filament\Resources\EmpresaResource\RelationManagers;
-use App\Models\Empresa;
+use App\Filament\Resources\EquipoResource\Pages;
+use App\Filament\Resources\EquipoResource\RelationManagers;
+use App\Models\Equipo;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,22 +13,23 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class EmpresaResource extends Resource
+class EquipoResource extends Resource
 {
-    protected static ?string $model = Empresa::class;
+    protected static ?string $model = Equipo::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
     protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
-    protected static ?string $label = 'Empresa';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nombre')  // Campo para el nombre de la empresa
+                Forms\Components\TextInput::make('codigo')
                     ->required()
                     ->maxLength(255),
-
+                Forms\Components\TextInput::make('nombre')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -36,22 +37,21 @@ class EmpresaResource extends Resource
     {
         return $table
             ->columns([
-            
-                Tables\Columns\TextColumn::make('nombre')  // Columna para mostrar el nombre del médico
-                ->searchable()
-                ->sortable(),
                 
-                Tables\Columns\TextColumn::make('created_at')  // Columna para mostrar la fecha de creación
-                    ->label('Fecha de Creación')
+                Tables\Columns\TextColumn::make('codigo')
                     ->sortable()
-                    ->dateTime(),
-
-                Tables\Columns\TextColumn::make('updated_at')  // Columna para mostrar la fecha de última actualización
-                    ->label('Última Actualización')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('nombre')
                     ->sortable()
-                    ->dateTime(),
-
-
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado en')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado en')
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -76,9 +76,9 @@ class EmpresaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEmpresas::route('/'),
-            'create' => Pages\CreateEmpresa::route('/create'),
-            'edit' => Pages\EditEmpresa::route('/{record}/edit'),
+            'index' => Pages\ListEquipos::route('/'),
+            'create' => Pages\CreateEquipo::route('/create'),
+            'edit' => Pages\EditEquipo::route('/{record}/edit'),
         ];
     }
 }

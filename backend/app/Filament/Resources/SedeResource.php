@@ -17,7 +17,9 @@ class SedeResource extends Resource
 {
     protected static ?string $model = Sede::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
+    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Sede';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

@@ -17,7 +17,10 @@ class CiudadResource extends Resource
 {
     protected static ?string $model = Ciudad::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Ciudade';  // Etiqueta singular
+   
 
     public static function form(Form $form): Form
     {

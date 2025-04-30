@@ -60,6 +60,16 @@ class PGPAsmetResource extends Resource
                     ->label('Ciudad')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Fecha de Creación')
+                    ->dateTime()
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Fecha de Actualización')
+                    ->dateTime()
+                    ->sortable()
+                    ->searchable(),
             ])
             ->defaultPaginationPageOption(10)
             ->paginationPageOptions([10, 25, 50, 100])

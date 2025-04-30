@@ -17,7 +17,9 @@ class EntidadResource extends Resource
 {
     protected static ?string $model = Entidad::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Entidade';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

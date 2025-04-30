@@ -18,7 +18,9 @@ class MedicoResource extends Resource
     protected static ?string $model = Medico::class;
 
     // Icono en la barra de navegación
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+    // Agrupación en el menú de navegación
+    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
 
     /**
      * Definir el formulario para agregar/editar médicos

@@ -18,6 +18,8 @@ class EspecialidadResource extends Resource
     protected static ?string $model = Especialidad::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Especialidade';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {
