@@ -21,6 +21,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -30,9 +31,13 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('Radiologos')
+            ->favicon(asset('imagenes/logo.png'))
+            ->brandLogo(asset('imagenes/logo.png'))
+            ->brandLogoHeight('60px')
             ->colors([
                 'primary' => '#1D4ED8',
+            //poner imagen de logo
+           
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

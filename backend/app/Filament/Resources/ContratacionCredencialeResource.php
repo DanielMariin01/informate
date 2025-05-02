@@ -18,7 +18,10 @@ class ContratacionCredencialeResource extends Resource
 {
     protected static ?string $model = Contratacion_credenciale::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationGroup = 'Matriz de contratacion';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Contratación de Credenciales';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

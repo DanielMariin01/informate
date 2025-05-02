@@ -18,7 +18,7 @@ class PGPSuraResource extends Resource
 {
     protected static ?string $model = PGP_Sura::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Instructivo PGP';
     protected static ?string $navigationLabel = 'PGP Sura';
 

@@ -19,7 +19,7 @@ class ProcedimientoSosRadiologosResource extends Resource
 {
     protected static ?string $model = Procedimiento_sos_radiologos::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Instructivo PGP';
     protected static ?string $navigationLabel = 'PAC Bienestar Radiologos';
     protected static ?string $label = 'Procedimiento SOS Radiologos';

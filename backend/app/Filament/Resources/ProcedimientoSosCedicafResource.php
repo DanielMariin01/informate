@@ -19,7 +19,7 @@ class ProcedimientoSosCedicafResource extends Resource
 {
     protected static ?string $model = Procedimiento_sos_cedicaf::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Instructivo PGP';
     protected static ?string $navigationLabel = 'PAC Bienestar CEDICAF';
 

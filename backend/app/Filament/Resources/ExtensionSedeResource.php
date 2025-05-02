@@ -18,7 +18,9 @@ class ExtensionSedeResource extends Resource
 {
     protected static ?string $model = Extension_sede::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-phone-arrow-up-right';
+    protected static ?string $navigationGroup = 'Contactos';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Extensión Cada Sede ';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

@@ -17,7 +17,9 @@ class PQRSFResource extends Resource
 {
     protected static ?string $model = PQRSF::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left';
+    protected static ?string $navigationGroup = 'Contactos';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'PQRSF ';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

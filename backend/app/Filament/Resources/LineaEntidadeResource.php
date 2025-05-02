@@ -18,7 +18,9 @@ class LineaEntidadeResource extends Resource
 {
     protected static ?string $model = Linea_entidade::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-phone';
+    protected static ?string $navigationGroup = 'Contactos';  // Agrupación en el menú de navegación
+    protected static ?string $label = 'Linea De Entidades De La 01 8000';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {

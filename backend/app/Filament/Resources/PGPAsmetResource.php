@@ -18,7 +18,7 @@ class PGPAsmetResource extends Resource
 {
     protected static ?string $model = PGP_Asmet::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Instructivo PGP';
     protected static ?string $navigationLabel = 'Contrato Asmet PP';
 
@@ -72,7 +72,7 @@ class PGPAsmetResource extends Resource
                     ->searchable(),
             ])
             ->defaultPaginationPageOption(10)
-            ->paginationPageOptions([10, 25, 50, 100])
+            ->paginationPageOptions([10, 25,150, 200])
             ->filters([
                 //crear filtro por ciudad   
                 Tables\Filters\SelectFilter::make('fk_ciudad')

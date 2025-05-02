@@ -20,7 +20,11 @@ class MedicoProcedimientoSedeResource extends Resource
 {
     protected static ?string $model = Medico_procedimiento_sede::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+//Icono que haga referencia a la tabla
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';  // Icono de navegación
+
+ // Agrupación en el menú de navegación
+    protected static ?string $label = 'Procedimientos Por Medico y Sede';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {
