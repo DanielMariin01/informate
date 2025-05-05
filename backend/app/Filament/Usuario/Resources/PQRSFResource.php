@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Usuario\Resources;
 
-use App\Filament\Resources\PQRSFResource\Pages;
-use App\Filament\Resources\PQRSFResource\RelationManagers;
+use App\Filament\Usuario\Resources\PQRSFResource\Pages;
+use App\Filament\Usuario\Resources\PQRSFResource\RelationManagers;
 use App\Models\PQRSF;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -38,23 +38,22 @@ class PQRSFResource extends Resource
     {
         return $table
             ->columns([
-             
                 Tables\Columns\TextColumn::make('caso')
-                    ->label('Caso')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('descripcion')
-                    ->label('Descripción')
-                    ->sortable()
-                
-            ])->filters([
-                //
-            ])->headerActions([
-                Tables\Actions\CreateAction::make(),
-            ])->actions([
-                //
-            ])->bulkActions([
-                //
+                ->label('Caso')
+                ->sortable()
+                ->searchable(),
+            Tables\Columns\TextColumn::make('descripcion')
+                ->label('Descripción')
+                ->sortable()
+                ->searchable(),
+            Tables\Columns\TextColumn::make('created_at')
+                ->label('Creado en')
+                ->dateTime()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->label('Actualizado en')
+                ->dateTime()
+                ->sortable(),
             ])
             ->filters([
                 //

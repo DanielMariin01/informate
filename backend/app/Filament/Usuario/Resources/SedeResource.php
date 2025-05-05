@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Usuario\Resources;
 
-use App\Filament\Resources\SedeResource\Pages;
-use App\Filament\Resources\SedeResource\RelationManagers;
+use App\Filament\Usuario\Resources\SedeResource\Pages;
+use App\Filament\Usuario\Resources\SedeResource\RelationManagers;
 use App\Models\Sede;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -18,7 +18,7 @@ class SedeResource extends Resource
     protected static ?string $model = Sede::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map-pin';
-    protected static ?string $navigationGroup = 'Administración';  // Agrupación en el menú de navegación
+     // Agrupación en el menú de navegación
     protected static ?string $label = 'Sede';  // Etiqueta singular
 
     public static function form(Form $form): Form
@@ -64,24 +64,13 @@ class SedeResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('created_at')  // Columna para mostrar la fecha de creación
-                    ->label('Fecha de Creación')
-                    ->sortable()
-                    ->dateTime(),
-
-                Tables\Columns\TextColumn::make('updated_at')  // Columna para mostrar la fecha de última actualización
-                    ->label('Última Actualización')
-                    ->sortable()
-                    ->dateTime(),
             ])
             ->filters([
-                //filtro por sede
                 Tables\Filters\SelectFilter::make('fk_sede')  // Filtro por sede
                 ->label('Sede')
                 ->searchable()
                 ->relationship('sede', 'nombre')
                 ->placeholder('Todas las sedes'),
-                  
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

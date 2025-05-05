@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Usuario\Resources;
 
-use App\Filament\Resources\ContratacionClienteResource\Pages;
-use App\Filament\Resources\ContratacionClienteResource\RelationManagers;
+use App\Filament\Usuario\Resources\ContratacionClienteResource\Pages;
+use App\Filament\Usuario\Resources\ContratacionClienteResource\RelationManagers;
 use App\Models\Contratacion_cliente;
 use App\Models\ContratacionCliente;
 use Filament\Forms;
@@ -26,7 +26,6 @@ class ContratacionClienteResource extends Resource
     {
         return $form
             ->schema([
-                //realizar el form para seleccionar la empresa y la ciudad
                 Forms\Components\TextInput::make('cliente_anterior')
                 ->label('Cliente Anterior')
                 ->required(),
@@ -102,10 +101,6 @@ class ContratacionClienteResource extends Resource
                 ->label('Servicios Contratados')
                 ->required(),
       
-            
-
-                
-                
             ]);
     }
 
@@ -209,19 +204,10 @@ class ContratacionClienteResource extends Resource
                 ->label('Servicios Contratados')
                 ->limit(50)
                 ->searchable(),
-            Tables\Columns\TextColumn::make('created_at')
-                ->label('Fecha de Creación')
-                ->sortable()
-                ->dateTime(),
-            Tables\Columns\TextColumn::make('updated_at')
-                ->label('Última Actualización')
-                ->sortable()
-                ->dateTime(),
             ])
             ->defaultPaginationPageOption(10)
             ->paginationPageOptions([10, 25, 50, 100])
             ->filters([
-                //filtro por empresa
                 Tables\Filters\SelectFilter::make('fk_empresa')
                     ->relationship('empresa', 'nombre')
                     ->label('Empresa'),

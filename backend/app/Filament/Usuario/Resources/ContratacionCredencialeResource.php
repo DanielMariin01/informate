@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Usuario\Resources;
 
-use App\Filament\Resources\ContratacionCredencialeResource\Pages;
-use App\Filament\Resources\ContratacionCredencialeResource\RelationManagers;
+use App\Filament\Usuario\Resources\ContratacionCredencialeResource\Pages;
+use App\Filament\Usuario\Resources\ContratacionCredencialeResource\RelationManagers;
 use App\Models\Contratacion_credenciale;
 use App\Models\ContratacionCredenciale;
 use Filament\Forms;
@@ -18,7 +18,6 @@ class ContratacionCredencialeResource extends Resource
 {
     protected static ?string $model = Contratacion_credenciale::class;
 
-  
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Matriz de contratacion';  // Agrupación en el menú de navegación
     protected static ?string $label = 'Contratación de Credenciales';  // Etiqueta singular
@@ -28,27 +27,27 @@ class ContratacionCredencialeResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('cliente_anterior')
-                    ->label('Cliente Anterior')
-                    ->required(),
-                Forms\Components\TextInput::make('cliente_nuevo')
-                    ->label('Cliente Nuevo')
-                    ->required(),
-                Forms\Components\Select::make('fk_empresa')  // Campo para seleccionar la empresa
-                    ->relationship('empresa', 'nombre')
-                    ->required(),
-                Forms\Components\Select::make('fk_ciudad')  // Campo para seleccionar la ciudad
-                    ->relationship('ciudad', 'nombre')
-                    ->required(),
-                Forms\Components\TextInput::make('codigo_cliente')
-                    ->label('Código Cliente')
-                    ->required(),
-                Forms\Components\Textarea::make('descripcion')
-                    ->label('Descripción')
-                    ->nullable(),
-                Forms\Components\Textarea::make('soporte')  // Campo para subir el soporte
-                    ->label('Soporte')
-                    ->nullable(),
-             
+                ->label('Cliente Anterior')
+                ->required(),
+            Forms\Components\TextInput::make('cliente_nuevo')
+                ->label('Cliente Nuevo')
+                ->required(),
+            Forms\Components\Select::make('fk_empresa')  // Campo para seleccionar la empresa
+                ->relationship('empresa', 'nombre')
+                ->required(),
+            Forms\Components\Select::make('fk_ciudad')  // Campo para seleccionar la ciudad
+                ->relationship('ciudad', 'nombre')
+                ->required(),
+            Forms\Components\TextInput::make('codigo_cliente')
+                ->label('Código Cliente')
+                ->required(),
+            Forms\Components\Textarea::make('descripcion')
+                ->label('Descripción')
+                ->nullable(),
+            Forms\Components\Textarea::make('soporte')  // Campo para subir el soporte
+                ->label('Soporte')
+                ->nullable(),
+         
             ]);
     }
 
@@ -84,17 +83,8 @@ class ContratacionCredencialeResource extends Resource
                     ->label('Soporte')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Fecha de Creación')
-                    ->sortable()
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Fecha de Actualización')
-                    ->sortable()
-                    ->dateTime(),
             ])
             ->filters([
-                //filtro por empresa
                 Tables\Filters\SelectFilter::make('fk_empresa')
                     ->relationship('empresa', 'nombre')
                     ->label('Empresa'),
