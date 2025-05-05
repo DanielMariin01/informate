@@ -84,6 +84,14 @@ class ContratacionCredencialeResource extends Resource
                     ->label('Soporte')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Fecha de Creación')
+                    ->sortable()
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Fecha de Actualización')
+                    ->sortable()
+                    ->dateTime(),
             ])
             ->filters([
                 //
