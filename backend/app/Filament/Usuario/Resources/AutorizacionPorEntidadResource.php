@@ -21,6 +21,17 @@ class AutorizacionPorEntidadResource extends Resource
     protected static ?string $navigationLabel = 'Autorización por Entidad';
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'delete',  
+            'delete_any',
+        ];
+    }
 
     public static function form(Form $form): Form
     {

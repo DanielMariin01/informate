@@ -45,15 +45,7 @@ class PQRSFResource extends Resource
             Tables\Columns\TextColumn::make('descripcion')
                 ->label('Descripción')
                 ->sortable()
-                ->searchable(),
-            Tables\Columns\TextColumn::make('created_at')
-                ->label('Creado en')
-                ->dateTime()
-                ->sortable(),
-            Tables\Columns\TextColumn::make('updated_at')
-                ->label('Actualizado en')
-                ->dateTime()
-                ->sortable(),
+            
             ])
             ->filters([
                 //

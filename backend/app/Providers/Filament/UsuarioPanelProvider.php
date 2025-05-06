@@ -26,6 +26,7 @@ class UsuarioPanelProvider extends PanelProvider
             ->id('usuario')
             ->path('usuario')
             ->login()
+            ->default()
             ->favicon(asset('imagenes/logo.png'))
             ->brandLogo(asset('imagenes/logo.png'))
             ->brandLogoHeight('60px')
@@ -56,6 +57,9 @@ class UsuarioPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
             ]);
     }
 }

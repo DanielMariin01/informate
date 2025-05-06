@@ -40,6 +40,14 @@ class UserResource extends Resource
                     ->minLength(8)
                     ->dehydrated(fn ($state) => ! blank($state))
                     ->visibleOn('create'),
+                //formulario con el rol de usuario
+                Forms\Components\Select::make('roles')
+                    ->label('Rol')
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload()
+                    ->required()
+                    ->searchable()
             ]);
     }
 
@@ -62,6 +70,10 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Fecha de Actualización')
                     ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Rol')
+                    ->searchable()
                     ->sortable(),
             ])->filters([
                 //
