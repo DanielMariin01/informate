@@ -22,6 +22,7 @@ class MedicoProcedimientoSedeResource extends Resource
 
 //Icono que haga referencia a la tabla
     protected static ?string $navigationIcon = 'heroicon-o-user-group';  // Icono de navegación
+    protected static ?string $navigationGroup = 'Guia de agendamiento';  // Agrupación en el menú de navegación
 
  // Agrupación en el menú de navegación
     protected static ?string $label = 'Procedimientos Por Medico y Sede';  // Etiqueta singular
