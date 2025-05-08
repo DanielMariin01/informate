@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Horario_medico extends Model
 {
@@ -42,5 +43,17 @@ public function updatedBy()
     return $this->belongsTo(User::class, 'updated_by');
 }
     //relación con la tabla de usuarios
+    protected static function boot()
+    {
+        parent::boot();
 
+        static::creating(function ($model) {
+            $model->created_by = Auth::id(); // Asigna el ID del usuario autenticado al crear
+            $model->updated_by = Auth::id(); // También asigna el ID al actualizar
+        });
+
+        static::updating(function ($model) {
+            $model->updated_by = Auth::id(); // Asigna el ID del usuario autenticado al actualizar
+        });
+    }
 }
