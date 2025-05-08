@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\HorarioMedicoResource\Widgets;
 
+use App\Filament\Resources\HorarioMedicoResource;
 use Saade\FilamentFullCalendar\Widgets\FullCalendarWidget;
 use App\Models\Horario_medico;
 use Filament\Forms\Components\ColorPicker;
@@ -12,6 +13,10 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TimePicker;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Forms;
+use Filament\Forms\ComponentContainer;
 
 
 
@@ -70,20 +75,24 @@ class CalendarWidget extends FullCalendarWidget
     public function fetchEvents(array $fetchInfo): array
     {
         return Horario_medico::query()
+
             ->where('fecha_inicio', '>=', $fetchInfo['start'])
             ->where('fecha_fin', '<=', $fetchInfo['end'])
             ->get()
             ->map(fn (Horario_medico $horario) => [
+                'id' => $horario->id_horario_medico, // Asegúrate de que este campo exista en tu modelo
                 'title' => $horario->medico->nombre . ' - ' . $horario->sede->nombre,
-                'start' => $horario->fecha_inicio . 'T' . $horario->hora_inicio,
-                'end' => $horario->fecha_fin . 'T' . $horario->hora_fin,
+                'start' => $horario->fecha_inicio . 'T' . $horario->hora_inicio, // Formato adecuado para FullCalendar
+                'end' => $horario->fecha_fin . 'T' . $horario->hora_fin, // Formato adecuado para FullCalendar
                 'color' => $horario->color,
                 'description' => 'Creado por: ' . ($horario->createdBy->name ?? 'N/A') . 
-                             ', Actualizado por: ' . ($horario->updatedBy->name ?? 'N/A'),
-
+                                 ', Actualizado por: ' . ($horario->updatedBy->name ?? 'N/A'),
+         // Asegúrate de incluir el 'id' para poder accederlo después
+               // Indicamos que la URL debe abrirse en una nueva pestaña
+               
             ])
             ->all();
     }
-   
+
 
 }

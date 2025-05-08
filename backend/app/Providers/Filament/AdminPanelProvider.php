@@ -65,6 +65,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 FilamentFullCalendarPlugin::make()
                 ->selectable()
+                ->editable()
                  
             )
             ->plugins([
