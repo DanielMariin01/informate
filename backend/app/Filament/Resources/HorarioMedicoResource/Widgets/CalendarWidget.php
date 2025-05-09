@@ -13,11 +13,11 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TimePicker;
-use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
-use Filament\Forms;
+use Saade\FilamentFullCalendar\Actions\EditAction;
+use Saade\FilamentFullCalendar\Actions\DeleteAction;
+use Filament\Forms\Form;
 use Filament\Forms\ComponentContainer;
-
+use Saade\FilamentFullCalendar\Actions\CreateAction;
 
 
 
@@ -75,24 +75,60 @@ class CalendarWidget extends FullCalendarWidget
     public function fetchEvents(array $fetchInfo): array
     {
         return Horario_medico::query()
-
             ->where('fecha_inicio', '>=', $fetchInfo['start'])
             ->where('fecha_fin', '<=', $fetchInfo['end'])
             ->get()
             ->map(fn (Horario_medico $horario) => [
-                'id' => $horario->id_horario_medico, // Asegúrate de que este campo exista en tu modelo
-                'title' => $horario->medico->nombre . ' - ' . $horario->sede->nombre,
-                'start' => $horario->fecha_inicio . 'T' . $horario->hora_inicio, // Formato adecuado para FullCalendar
-                'end' => $horario->fecha_fin . 'T' . $horario->hora_fin, // Formato adecuado para FullCalendar
+                'id' => $horario->id_horario_medico,
+                'title' => $horario->medico->nombre . ' - ' . $horario->sede->nombre . ' (' . 
+                           \Carbon\Carbon::createFromFormat('H:i:s', $horario->hora_inicio)->format('g:i a') . ' - ' . 
+                           \Carbon\Carbon::createFromFormat('H:i:s', $horario->hora_fin)->format('g:i a') . ')',
+                'start' => $horario->fecha_inicio . 'T' . $horario->hora_inicio,
+                'end' => $horario->fecha_fin . 'T' . $horario->hora_fin,
                 'color' => $horario->color,
                 'description' => 'Creado por: ' . ($horario->createdBy->name ?? 'N/A') . 
                                  ', Actualizado por: ' . ($horario->updatedBy->name ?? 'N/A'),
-         // Asegúrate de incluir el 'id' para poder accederlo después
-               // Indicamos que la URL debe abrirse en una nueva pestaña
-               
             ])
             ->all();
     }
+ 
+    protected function modalActions(): array
+ {
+     return [
+         EditAction::make()
+             ->mountUsing(
+                 function (Horario_medico $record, Form $form, array $arguments) {
+                     $form->fill([
+                        'id' => $record->id_horario_medico,
+                        'title' => $record->fk_sede,
+                        // 'start' => $record->fecha_inicio . 'T' . $record->hora_inicio,
+                        // 'end' => $record->fecha_fin . 'T' . $record->hora_fin,
+                        'fecha_inicio' => $arguments['event']['start']?? $record->fecha_inicio,
 
+                        'fecha_fin' => $arguments['event']['end'] ?? $record->fecha_fin,
 
+                        'hora_inicio' => $record->hora_inicio,
+                        'hora_fin' => $record->hora_fin,
+                        'color' => $record->color,
+                        'description' => $record->createdBy->name ?? 'N/A' . 
+                                         ', Actualizado por: ' . $record->updatedBy->name ?? 'N/A',
+                   
+                        
+                  
+                        
+                     ]);
+                 }
+             ),
+         DeleteAction::make(),
+     ];
+ }
+ public function eventDidMount(): string
+ {
+     return <<<JS
+         function({ event, timeText, isStart, isEnd, isMirror, isPast, isFuture, isToday, el, view }){
+             el.setAttribute("x-tooltip", "tooltip");
+             el.setAttribute("x-data", "{ tooltip: '"+event.title+"' }");
+         }
+     JS;
+ } 
 }

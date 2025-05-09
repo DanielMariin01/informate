@@ -22,6 +22,9 @@ class Horario_medico extends Model
     'updated_by',
     ];
     protected $primaryKey = 'id_horario_medico'; //
+    // Nombre de la clave primaria
+    // Si la tabla tiene las columnas created_at y updated_at
+
     //relación con la tabla de médicos
     public function medico()
     {
