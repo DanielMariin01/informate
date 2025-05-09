@@ -15,7 +15,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_procedimiento::sos::cedicaf');
+        return $user->can('view_any_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -23,7 +23,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function view(User $user, Procedimiento_sos_cedicaf $procedimientoSosCedicaf): bool
     {
-        return $user->can('view_procedimiento::sos::cedicaf');
+        return $user->can('view_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -31,7 +31,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_procedimiento::sos::cedicaf');
+        return $user->can('create_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -39,7 +39,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function update(User $user, Procedimiento_sos_cedicaf $procedimientoSosCedicaf): bool
     {
-        return $user->can('update_procedimiento::sos::cedicaf');
+        return $user->can('update_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -47,7 +47,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function delete(User $user, Procedimiento_sos_cedicaf $procedimientoSosCedicaf): bool
     {
-        return $user->can('delete_procedimiento::sos::cedicaf');
+        return $user->can('delete_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -55,7 +55,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_procedimiento::sos::cedicaf');
+        return $user->can('delete_any_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -63,7 +63,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function forceDelete(User $user, Procedimiento_sos_cedicaf $procedimientoSosCedicaf): bool
     {
-        return $user->can('force_delete_procedimiento::sos::cedicaf');
+        return $user->can('force_delete_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -71,7 +71,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_procedimiento::sos::cedicaf');
+        return $user->can('force_delete_any_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -79,7 +79,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function restore(User $user, Procedimiento_sos_cedicaf $procedimientoSosCedicaf): bool
     {
-        return $user->can('restore_procedimiento::sos::cedicaf');
+        return $user->can('restore_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -87,7 +87,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_procedimiento::sos::cedicaf');
+        return $user->can('restore_any_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -95,7 +95,7 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function replicate(User $user, Procedimiento_sos_cedicaf $procedimientoSosCedicaf): bool
     {
-        return $user->can('replicate_procedimiento::sos::cedicaf');
+        return $user->can('replicate_procedimiento::s::o::s::cedicaf');
     }
 
     /**
@@ -103,6 +103,6 @@ class Procedimiento_sos_cedicafPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_procedimiento::sos::cedicaf');
+        return $user->can('reorder_procedimiento::s::o::s::cedicaf');
     }
 }
