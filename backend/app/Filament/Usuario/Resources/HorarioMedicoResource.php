@@ -3,7 +3,6 @@
 namespace App\Filament\Usuario\Resources;
 
 use App\Filament\Usuario\Resources\HorarioMedicoResource\Pages;
-use App\Filament\Usuario\Resources\HorarioMedicoResource\RelationManagers;
 use App\Models\Horario_medico;
 use App\Models\HorarioMedico;
 use Filament\Forms;
@@ -12,8 +11,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+
+
 
 class HorarioMedicoResource extends Resource
 {
@@ -55,6 +55,8 @@ class HorarioMedicoResource extends Resource
                     ->label('Color'),
             ]);
     }
+  
+
 
     public static function table(Table $table): Table
     {
@@ -86,22 +88,8 @@ class HorarioMedicoResource extends Resource
                         ->sortable(),
                     Tables\Columns\ColorColumn::make('color')
                         ->label('Color'),
-                    Tables\Columns\TextColumn::make('created_at')
-                        ->label('Creado en')
-                        ->dateTime()
-                        ->sortable(),
-                    Tables\Columns\TextColumn::make('updated_at')
-                        ->label('Actualizado en')
-                        ->dateTime()
-                        ->sortable(),
-                        Tables\Columns\TextColumn::make('createdBy.name') // Usamos la relación 'createdBy'
-                        ->label('Creado por')
-                        ->sortable()
-                        ->searchable(),
-                        Tables\Columns\TextColumn::make('updatedBy.name') // Usamos la relación 'updatedBy'
-                        ->label('Actualizado por')
-                        ->sortable()
-                        ->searchable(),
+                
+                      
             ])
             ->filters([
                 //filtro por sede
@@ -125,8 +113,9 @@ class HorarioMedicoResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+           
     }
-
+    
     public static function getRelations(): array
     {
         return [
@@ -134,7 +123,7 @@ class HorarioMedicoResource extends Resource
         ];
     }
 
-    public static function getPages(): array
+  public static function getPages(): array
     {
         return [
             'index' => Pages\ListHorarioMedicos::route('/'),

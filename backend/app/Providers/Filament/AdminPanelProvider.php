@@ -22,6 +22,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 use Shanerbaner82\PanelRoles\PanelRoles;
 
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -73,6 +74,7 @@ class AdminPanelProvider extends PanelProvider
                 PanelRoles::make()
                 ->roleToAssign('super_admin', 'Monitor')
                 ->restrictedRoles(['super_admin', 'Monitor']),
+
             ]);
            
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\HorarioMedicoResource\Widgets;
+namespace App\Filament\Widgets;
 
 use App\Filament\Resources\HorarioMedicoResource;
 use Saade\FilamentFullCalendar\Widgets\FullCalendarWidget;

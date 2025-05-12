@@ -3,9 +3,10 @@
 namespace App\Filament\Resources\HorarioMedicoResource\Pages;
 
 use App\Filament\Resources\HorarioMedicoResource;
-use App\Filament\Resources\HorarioMedicoResource\Widgets\CalendarWidget;
+use App\Filament\Widgets\CalendarWidget;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+
 
 class ListHorarioMedicos extends ListRecords
 {
