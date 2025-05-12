@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\HorarioMedicoResource\Pages;
 
-use App\Filament\Resources\HorarioMedicoResource;
+use App\Filament\Resources\HorarioMedicoResource\Widgets\CalendarWidget as WidgetsCalendarWidget;
+use App\Filament\Usuario\Resources\HorarioMedicoResource;
 use App\Filament\Widgets\CalendarWidget;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+ 
 
 
 class ListHorarioMedicos extends ListRecords
@@ -22,7 +24,7 @@ class ListHorarioMedicos extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            CalendarWidget::class,
+            WidgetsCalendarWidget::class,
         ];
     }
 }

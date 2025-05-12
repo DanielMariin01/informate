@@ -21,54 +21,7 @@ class CalendarWidget extends FullCalendarWidget
 {
     public Model|string|null $model = Horario_medico::class;
 
-    public function getFormSchema(): array
-    {
-        return [
-            Grid::make(2)
-                ->schema([
-                    Select::make('fk_medico')
-                        ->label('Médico')
-                        ->relationship('medico', 'nombre')
-                        ->required()
-                        ->searchable()
-                        ->preload(),
-
-                    Select::make('fk_sede')
-                        ->label('Sede')
-                        ->relationship('sede', 'nombre')
-                        ->required()
-                        ->searchable()
-                        ->preload(),
-                ]),
-            Grid::make(2)
-                ->schema([
-                    DatePicker::make('fecha_inicio')
-                        ->label('Fecha de Inicio')
-                        ->default(fn ($record) => $record?->fecha_inicio ?? null) // Solo fecha
-                        ->required(),
-
-                    TimePicker::make('hora_inicio')
-                        ->label('Hora de Inicio')
-                        ->default(fn ($record) => $record?->hora_inicio ?? null) // Solo hora
-                        ->required(),
-
-                    DatePicker::make('fecha_fin')
-                        ->label('Fecha de Fin')
-                        ->default(fn ($record) => $record?->fecha_fin ?? null) // Solo fecha
-                        ->required(),
-
-                    TimePicker::make('hora_fin')
-                        ->label('Hora de Fin')
-                        ->default(fn ($record) => $record?->hora_fin ?? null) // Solo hora
-                        ->required(),
-                ]),
-            ColorPicker::make('color')
-                ->label('Color')
-                ->default(fn ($record) => $record?->color ?? '#000000')
-                ->required(),
-        ];
-    }
-    public function fetchEvents(array $fetchInfo): array
+     public function fetchEvents(array $fetchInfo): array
     {
         return Horario_medico::query()
             ->where('fecha_inicio', '>=', $fetchInfo['start'])
@@ -87,44 +40,32 @@ class CalendarWidget extends FullCalendarWidget
             ])
             ->all();
     }
- 
+
     protected function modalActions(): array
- {
-     return [
-         EditAction::make()
-             ->mountUsing(
-                 function (Horario_medico $record, Form $form, array $arguments) {
-                     $form->fill([
-                        'id' => $record->id_horario_medico,
-                        'title' => $record->fk_sede,
-                        // 'start' => $record->fecha_inicio . 'T' . $record->hora_inicio,
-                        // 'end' => $record->fecha_fin . 'T' . $record->hora_fin,
-                        'fecha_inicio' => $arguments['event']['start']?? $record->fecha_inicio,
+    {
+        // No se permiten acciones de edición ni eliminación
+        return [];
+    }
 
-                        'fecha_fin' => $arguments['event']['end'] ?? $record->fecha_fin,
+    public function isSelectable(): bool
+    {
+        // Deshabilita la selección de fechas en el calendario
+        return false;
+    }
 
-                        'hora_inicio' => $record->hora_inicio,
-                        'hora_fin' => $record->hora_fin,
-                        'color' => $record->color,
-                        'description' => $record->createdBy->name ?? 'N/A' . 
-                                         ', Actualizado por: ' . $record->updatedBy->name ?? 'N/A',
-                   
-                        
-                  
-                        
-                     ]);
-                 }
-             ),
-         DeleteAction::make(),
-     ];
- }
- public function eventDidMount(): string
- {
-     return <<<JS
-         function({ event, timeText, isStart, isEnd, isMirror, isPast, isFuture, isToday, el, view }){
-             el.setAttribute("x-tooltip", "tooltip");
-             el.setAttribute("x-data", "{ tooltip: '"+event.title+"' }");
-         }
-     JS;
- } 
+    public function isEditable(): bool
+    {
+        // Deshabilita la edición de eventos en el calendario
+        return false;
+    }
+
+    public function eventDidMount(): string
+    {
+        return <<<JS
+            function({ event, el }){
+                el.setAttribute("x-tooltip", "tooltip");
+                el.setAttribute("x-data", "{ tooltip: '"+event.title+"' }");
+            }
+        JS;
+    }
 }

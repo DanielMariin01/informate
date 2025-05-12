@@ -24,7 +24,11 @@ class HorarioMedicoResource extends Resource
     protected static ?string $navigationGroup = 'Guia de agendamiento'; 
 
     protected static ?string $label = 'Horario Médico';
-
+ public static function getActions(): array
+    {
+        // Devuelve un array vacío para eliminar el botón de creación
+        return [];
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -59,62 +63,58 @@ class HorarioMedicoResource extends Resource
 
 
     public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('medico.nombre')
+{
+    return $table
+        ->columns([
+            Tables\Columns\TextColumn::make('medico.nombre')
                 ->label('Médico')
                 ->sortable()
                 ->searchable(),
-                    Tables\Columns\TextColumn::make('sede.nombre')
-                        ->label('Sede')
-                        ->sortable()
-                        ->searchable(),
-                    Tables\Columns\TextColumn::make('fecha_inicio')
-                        ->label('Fecha Inicio')
-                        ->date()
-                        ->sortable(),
-                    Tables\Columns\TextColumn::make('fecha_fin')
-                        ->label('Fecha Fin')
-                        ->date()
-                        ->sortable(),
-                    Tables\Columns\TextColumn::make('hora_inicio')
-                        ->label('Hora Inicio')
-                        ->time('h:i A')
-                        ->sortable(),
-                    Tables\Columns\TextColumn::make('hora_fin')
-                        ->label('Hora Fin')
-                        ->time('h:i A')
-                        ->sortable(),
-                    Tables\Columns\ColorColumn::make('color')
-                        ->label('Color'),
-                
-                      
-            ])
-            ->filters([
-                //filtro por sede
-                Tables\Filters\SelectFilter::make('fk_sede')
-                    ->relationship('sede', 'nombre')
-                    ->label('Sede')
-                    ->multiple()
-                    ->preload(),
-                //filtro por medico
-                Tables\Filters\SelectFilter::make('fk_medico')
-                    ->relationship('medico', 'nombre')
-                    ->label('Médico')
-                    ->multiple()
-                    ->preload(),
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-           
-    }
+            Tables\Columns\TextColumn::make('sede.nombre')
+                ->label('Sede')
+                ->sortable()
+                ->searchable(),
+            Tables\Columns\TextColumn::make('fecha_inicio')
+                ->label('Fecha Inicio')
+                ->date()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('fecha_fin')
+                ->label('Fecha Fin')
+                ->date()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('hora_inicio')
+                ->label('Hora Inicio')
+                ->time('h:i A')
+                ->sortable(),
+            Tables\Columns\TextColumn::make('hora_fin')
+                ->label('Hora Fin')
+                ->time('h:i A')
+                ->sortable(),
+            Tables\Columns\ColorColumn::make('color')
+                ->label('Color'),
+        ])
+        ->filters([
+            Tables\Filters\SelectFilter::make('fk_sede')
+                ->relationship('sede', 'nombre')
+                ->label('Sede')
+                ->multiple()
+                ->preload(),
+            Tables\Filters\SelectFilter::make('fk_medico')
+                ->relationship('medico', 'nombre')
+                ->label('Médico')
+                ->multiple()
+                ->preload(),
+        ])
+        ->actions([
+            // Solo se permite la acción de edición
+            Tables\Actions\EditAction::make(),
+        ])
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]),
+        ]);
+}
     
     public static function getRelations(): array
     {
@@ -127,7 +127,7 @@ class HorarioMedicoResource extends Resource
     {
         return [
             'index' => Pages\ListHorarioMedicos::route('/'),
-            'create' => Pages\CreateHorarioMedico::route('/create'),
+          
             'edit' => Pages\EditHorarioMedico::route('/{record}/edit'),
         ];
     }

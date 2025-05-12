@@ -11,11 +11,15 @@ class ListHorarioMedicos extends ListRecords
 {
     protected static string $resource = HorarioMedicoResource::class;
 
-    protected function getHeaderActions(): array
+   protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
-        ];
+        // Devuelve un array vacío para eliminar el botón de creación
+        return [];
+    }
+       protected function getActions(): array
+    {
+        // Devuelve un array vacío para eliminar cualquier acción predeterminada
+        return [];
     }
       protected function getHeaderWidgets(): array
     {
