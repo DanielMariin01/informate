@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\HorarioMedicoResource\Pages;
 use App\Filament\Resources\HorarioMedicoResource\RelationManagers;
 use App\Models\Horario_medico;
-use App\Models\HorarioMedico;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
+
 
 
 
@@ -106,19 +107,22 @@ class HorarioMedicoResource extends Resource
             ])
                 
             ->filters([
-                //filtro por sede
-               
-           
+                Tables\Filters\SelectFilter::make('fk_sede')
+                ->relationship('sede', 'nombre')
+                ->label('Sede')
+                ->multiple()
+                ->preload(),
+            Tables\Filters\SelectFilter::make('fk_medico')
+                ->relationship('medico', 'nombre')
+                ->label('Médico')
+                ->multiple()
+                ->preload(),
+
+
             ])->headerActions([
                 Tables\Actions\CreateAction::make(),
-            ])->actions([
-                //
-            ])->bulkActions([
-                //
             ])
-            ->filters([
-                //
-            ])
+           
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

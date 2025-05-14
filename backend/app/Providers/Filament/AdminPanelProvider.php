@@ -47,6 +47,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
+                
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -64,16 +65,21 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugin(
+                
                 FilamentFullCalendarPlugin::make()
                 ->selectable()
                 ->editable()
+         
                  
             )
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+               
+           
                 PanelRoles::make()
                 ->roleToAssign('super_admin', 'Monitor')
                 ->restrictedRoles(['super_admin', 'Monitor']),
+                
 
             ]);
            

@@ -17,6 +17,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+
 use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
 
@@ -47,6 +48,7 @@ class UsuarioPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Usuario/Widgets'), for: 'App\\Filament\\Usuario\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
+            
 
        
           
@@ -67,13 +69,16 @@ class UsuarioPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
              ->plugin(
-                FilamentFullCalendarPlugin::make()
+                FilamentFullCalendarPlugin::make(),
+            
+
           
                  
             )
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
-                 FilamentFullCalendarPlugin::make()
+                 FilamentFullCalendarPlugin::make(),
+              
                 
                        
             ]);

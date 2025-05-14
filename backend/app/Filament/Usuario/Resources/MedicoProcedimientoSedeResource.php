@@ -22,6 +22,7 @@ class MedicoProcedimientoSedeResource extends Resource
 
     // Agrupación en el menú de navegación
        protected static ?string $label = 'Procedimientos por médico y sede';  // Etiqueta singular
+         protected static ?string $navigationGroup = 'Guia de agendamiento';
 
     public static function form(Form $form): Form
     {

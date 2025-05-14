@@ -4,7 +4,7 @@ namespace App\Filament\Usuario\Resources;
 
 use App\Filament\Usuario\Resources\HorarioMedicoResource\Pages;
 use App\Models\Horario_medico;
-use App\Models\HorarioMedico;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
