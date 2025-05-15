@@ -15,6 +15,8 @@ use Filament\Tables\Columns\BooleanColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use function Laravel\Prompts\search;
+ 
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class TiempoRNMResource extends Resource
 {
@@ -147,6 +149,7 @@ class TiempoRNMResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                       ExportBulkAction::make()
                 ]),
             ]);
     }

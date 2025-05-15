@@ -21,7 +21,7 @@ class MedicoProcedimientoSedeResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user-group';  // Icono de navegación
 
     // Agrupación en el menú de navegación
-       protected static ?string $label = 'Procedimientos por médico y sede';  // Etiqueta singular
+       protected static ?string $label = 'Procedimientos por médico';  // Etiqueta singular
          protected static ?string $navigationGroup = 'Guia de agendamiento';
 
     public static function form(Form $form): Form
@@ -68,10 +68,10 @@ class MedicoProcedimientoSedeResource extends Resource
                     ->searchable()
                     
                     ->sortable(),
-                Tables\Columns\TextColumn::make('sede.nombre')  // Columna para mostrar el nombre de la sede
-                    ->label('Sede')
-                    ->searchable()
-                    ->sortable(),
+                //Tables\Columns\TextColumn::make('sede.nombre')  // Columna para mostrar el nombre de la sede
+                    //->label('Sede')
+                    //->searchable()
+                   // ->sortable(),
                 Tables\Columns\TextColumn::make('cupos_diarios')  // Columna para mostrar los cupos diarios
                     ->label('Cupos Diarios')
                     ->sortable(),
@@ -95,11 +95,11 @@ class MedicoProcedimientoSedeResource extends Resource
                 ->searchable()
                 ->relationship('procedimiento', 'nombre')
                 ->placeholder('Todos los procedimientos'),
-            Tables\Filters\SelectFilter::make('fk_sede')  // Filtro por sede
-                ->label('Sede')
-                ->searchable()
-                ->relationship('sede', 'nombre')
-                ->placeholder('Todas las sedes'),
+           // Tables\Filters\SelectFilter::make('fk_sede')  // Filtro por sede
+                //->label('Sede')
+                //->searchable()
+                //->relationship('sede', 'nombre')
+               //->placeholder('Todas las sedes'),
                 Tables\Filters\SelectFilter::make('procedimiento.codigo_resolucion') // Filtro por código resolución
                 ->label('Código Resolución')
                 ->searchable()

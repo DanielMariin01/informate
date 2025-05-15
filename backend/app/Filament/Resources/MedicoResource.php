@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class MedicoResource extends Resource
 {
@@ -77,6 +78,7 @@ class MedicoResource extends Resource
                 // Acción para eliminar varios médicos a la vez
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                       ExportBulkAction::make()
                 ]),
             ]);
     }

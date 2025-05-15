@@ -14,7 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class MedicoProcedimientoSedeResource extends Resource
 {
@@ -25,7 +25,7 @@ class MedicoProcedimientoSedeResource extends Resource
     protected static ?string $navigationGroup = 'Guia de agendamiento';  // Agrupación en el menú de navegación
 
  // Agrupación en el menú de navegación
-    protected static ?string $label = 'Procedimientos Por Medico y Sede';  // Etiqueta singular
+    protected static ?string $label = 'Procedimientos Por Medico';  // Etiqueta singular
 
     public static function form(Form $form): Form
     {
@@ -76,10 +76,10 @@ class MedicoProcedimientoSedeResource extends Resource
                     ->searchable()
                     
                     ->sortable(),
-                Tables\Columns\TextColumn::make('sede.nombre')  // Columna para mostrar el nombre de la sede
-                    ->label('Sede')
-                    ->searchable()
-                    ->sortable(),
+                //Tables\Columns\TextColumn::make('sede.nombre')  // Columna para mostrar el nombre de la sede
+                    //->label('Sede')
+                    //->searchable()
+                    //->sortable(),
                 Tables\Columns\TextColumn::make('cupos_diarios')  // Columna para mostrar los cupos diarios
                     ->label('Cupos Diarios')
                     ->sortable(),
@@ -113,11 +113,11 @@ class MedicoProcedimientoSedeResource extends Resource
                 ->searchable()
                 ->relationship('procedimiento', 'nombre')
                 ->placeholder('Todos los procedimientos'),
-            Tables\Filters\SelectFilter::make('fk_sede')  // Filtro por sede
-                ->label('Sede')
-                ->searchable()
-                ->relationship('sede', 'nombre')
-                ->placeholder('Todas las sedes'),
+            //Tables\Filters\SelectFilter::make('fk_sede')  // Filtro por sede
+                //->label('Sede')
+                //->searchable()
+                //->relationship('sede', 'nombre')
+                //->placeholder('Todas las sedes'),
                 Tables\Filters\SelectFilter::make('procedimiento.codigo_resolucion') // Filtro por código resolución
                 ->label('Código Resolución')
                 ->searchable()
@@ -131,6 +131,7 @@ class MedicoProcedimientoSedeResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                     ExportBulkAction::make()
                 ]),
             ]);
        

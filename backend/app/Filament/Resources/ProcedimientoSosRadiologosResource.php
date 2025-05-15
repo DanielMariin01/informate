@@ -14,7 +14,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+ 
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 class ProcedimientoSosRadiologosResource extends Resource
 {
     protected static ?string $model = Procedimiento_sos_radiologos::class;
@@ -99,6 +100,7 @@ class ProcedimientoSosRadiologosResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                      ExportBulkAction::make()
                 ]),
             ]);
     }
