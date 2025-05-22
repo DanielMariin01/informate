@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\HorarioMedicoResource\Pages;
 
-use App\Filament\Resources\HorarioMedicoResource\Widgets\CalendarWidget as WidgetsCalendarWidget;
+use App\Filament\Resources\HorarioMedicoResource\Widgets\CalendarWidget;
 use App\Filament\Resources\HorarioMedicoResource;
 use App\Filament\Widgets\CalendarWidget;
 use Filament\Actions;
