@@ -78,7 +78,7 @@ class MedicoResource extends Resource
                 // Acción para eliminar varios médicos a la vez
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                       ExportBulkAction::make()
+                 
                 ]),
             ]);
     }

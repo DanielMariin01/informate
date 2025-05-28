@@ -21,6 +21,16 @@ class CalendarWidget extends FullCalendarWidget
 {
     public Model|string|null $model = Horario_medico::class;
 
+    
+    protected function headerActions(): array
+    {
+        // Dejamos este array vacío para no mostrar acciones en el encabezado.
+        return [
+            // Si quisieras una acción de búsqueda específica aquí, la añadirías.
+            // Por defecto, Filament FullCalendar ya permite ver eventos al hacer click.
+        ];
+    }
+
      public function fetchEvents(array $fetchInfo): array
     {
         return Horario_medico::query()

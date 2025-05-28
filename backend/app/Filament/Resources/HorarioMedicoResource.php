@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
-
+use App\Filament\Resources\HorarioMedicoResource\Widgets\CalendarWidget;
 
 
 class HorarioMedicoResource extends Resource
@@ -40,20 +40,7 @@ class HorarioMedicoResource extends Resource
                 ->required()
                 ->searchable()
                 ->preload(),
-                Forms\Components\DatePicker::make('fecha_inicio')
-                    ->label('Fecha Inicio')
-                    ->required(),
-                Forms\Components\DatePicker::make('fecha_fin')
-                    ->label('Fecha Fin')
-                    ->required(),
-                Forms\Components\TimePicker::make('hora_inicio')
-                    ->label('Hora Inicio')
-                    ->required(),
-                Forms\Components\TimePicker::make('hora_fin')
-                    ->label('Hora Fin')
-                    ->required(),
-                Forms\Components\ColorPicker::make('color')
-                    ->label('Color'),
+               
             ]);
             
     }
@@ -129,7 +116,7 @@ class HorarioMedicoResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                      ExportBulkAction::make()
+                   
                 ]),
             ]);
     }
@@ -145,8 +132,24 @@ class HorarioMedicoResource extends Resource
     {
         return [
             'index' => Pages\ListHorarioMedicos::route('/'),
-            'create' => Pages\CreateHorarioMedico::route('/create'),
+            //'create' => Pages\CreateHorarioMedico::route('/create'),
             'edit' => Pages\EditHorarioMedico::route('/{record}/edit'),
         ];
     }
+      
+
+function isCreate(): bool
+{
+    return false; // Deshabilita la creación de nuevos registros desde el calendario
+}
+//eliminar el boton de crear registros
+    public static function canCreate(): bool
+    {
+        return false; // Deshabilita la creación de nuevos registros desde el calendario
+    }
+
+
+
+    
+    
 }

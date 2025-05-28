@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources\HorarioMedicoResource\Pages;
 
-use App\Filament\Resources\HorarioMedicoResource\Widgets\CalendarWidget;
 use App\Filament\Resources\HorarioMedicoResource;
-use App\Filament\Widgets\CalendarWidget;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
- 
+use App\Filament\Resources\HorarioMedicoResource\Widgets\CalendarWidget;
 
+use App\Filament\Resources\HorarioMedicoResource\Widgets\MedicoFilterWidget;
 
 class ListHorarioMedicos extends ListRecords
 {
@@ -17,14 +16,19 @@ class ListHorarioMedicos extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Crear horario_medico'),
         ];
     }
 
     protected function getHeaderWidgets(): array
     {
         return [
-            WidgetsCalendarWidget::class,
+            CalendarWidget::class,
+            // ¡Añade tu nuevo widget contenedor aquí!
+
         ];
     }
+
+  
 }
